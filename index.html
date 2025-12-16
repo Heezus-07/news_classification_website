@@ -6,20 +6,25 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
   <div class="container">
     <div class="card">
+
       <h1>News Article Classification</h1>
 
       <div class="layout">
-        <!-- LEFT COLUMN -->
+
+        <!-- LEFT PANEL -->
         <div class="left-panel">
 
+          <!-- Text input -->
           <textarea
             id="text"
             rows="4"
             placeholder="Enter a news headline or short description..."
           ></textarea>
 
+          <!-- Controls -->
           <div class="controls">
             <select id="model">
               <option>Ensemble</option>
@@ -32,8 +37,9 @@
             <button onclick="runPrediction()">Classify</button>
           </div>
 
-          <!-- RESULTS -->
+          <!-- Results -->
           <div id="result" class="result-card hidden">
+
             <div class="metrics">
               <div class="metric">
                 <span class="metric-label">Confidence</span>
@@ -46,10 +52,11 @@
             </div>
 
             <div id="probabilities" class="probs"></div>
+
           </div>
         </div>
 
-        <!-- RIGHT COLUMN -->
+        <!-- RIGHT PANEL -->
         <div class="right-panel">
           <div class="examples-card">
             <h3>Example News Headlines</h3>
@@ -72,8 +79,8 @@
             </ul>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 

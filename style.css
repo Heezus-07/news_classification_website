@@ -1,0 +1,68 @@
+body {
+  font-family: "Inter", sans-serif;
+  background: #e0e5ec;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px;
+}
+
+.card {
+  background: #e0e5ec;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow:
+    10px 10px 20px #b8bec6,
+    -10px -10px 20px #ffffff;
+}
+
+h1 {
+  text-align: center;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  resize: none;
+  font-size: 16px;
+  box-shadow:
+    inset 5px 5px 10px #b8bec6,
+    inset -5px -5px 10px #ffffff;
+  background: #e0e5ec;
+}
+
+select, button {
+  margin-top: 15px;
+  padding: 12px 18px;
+  border-radius: 15px;
+  border: none;
+  font-size: 16px;
+  background: #e0e5ec;
+  box-shadow:
+    5px 5px 10px #b8bec6,
+    -5px -5px 10px #ffffff;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow:
+    inset 5px 5px 10px #b8bec6,
+    inset -5px -5px 10px #ffffff;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #e0e5ec;
+  box-shadow:
+    inset 5px 5px 10px #b8bec6,
+    inset -5px -5px 10px #ffffff;
+}

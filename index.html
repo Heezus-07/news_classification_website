@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>News Classification</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>News Article Classification</h1>
+
+      <textarea id="text" rows="4"
+        placeholder="Enter a news headline or short description..."></textarea>
+
+      <select id="model">
+        <option>Ensemble</option>
+        <option>RoBERTa (Full)</option>
+        <option>RoBERTa (LoRA)</option>
+        <option>DistilBERT (Full)</option>
+        <option>DistilBERT (LoRA)</option>
+      </select>
+
+      <button onclick="runPrediction()">Classify</button>
+
+      <div id="result" class="result" style="display:none;"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

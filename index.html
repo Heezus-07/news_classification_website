@@ -23,10 +23,24 @@
 
       <button onclick="runPrediction()">Classify</button>
 
-      <div id="result" class="result" style="display:none;"></div>
+      <div id="result" class="result-card hidden">
+        <div class="metrics">
+          <div class="metric">
+            <span class="metric-label">Confidence</span>
+            <span id="confidence-value" class="metric-value"></span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Entropy</span>
+            <span id="entropy-value" class="metric-value"></span>
+          </div>
+        </div>
+      
+        <div id="probabilities" class="probs"></div>
+      </div>
     </div>
   </div>
 
   <script type="module" src="./app.js"></script>
 </body>
 </html>
+

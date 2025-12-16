@@ -1,4 +1,3 @@
-<script type="module">
 import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
 const client = await Client.connect("heezuss/news-classification-model");
@@ -27,4 +26,3 @@ window.runPrediction = async function () {
 
   resultDiv.innerHTML = html;
 };
-</script>

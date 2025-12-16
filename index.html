@@ -20,21 +20,21 @@
           <!-- Text input -->
           <textarea
             id="text"
+            class="input-text"
             rows="4"
             placeholder="Enter a news headline or short description..."
           ></textarea>
-
-          <!-- Controls -->
+          
           <div class="controls">
-            <select id="model">
+            <select id="model" class="input-select">
               <option>Ensemble</option>
               <option>RoBERTa (Full)</option>
               <option>RoBERTa (LoRA)</option>
               <option>DistilBERT (Full)</option>
               <option>DistilBERT (LoRA)</option>
             </select>
-
-            <button onclick="runPrediction()">Classify</button>
+          
+            <button class="input-button" onclick="runPrediction()">Classify</button>
           </div>
 
           <!-- Results -->
@@ -87,3 +87,4 @@
   <script type="module" src="./app.js"></script>
 </body>
 </html>
+

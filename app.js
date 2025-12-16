@@ -1,4 +1,9 @@
-async function runPrediction() {
+<script type="module">
+import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+
+const client = await Client.connect("heezuss/news-classification-model");
+
+window.runPrediction = async function () {
   const text = document.getElementById("text").value;
   const modelChoice = document.getElementById("model").value;
   const resultDiv = document.getElementById("result");
@@ -6,19 +11,12 @@ async function runPrediction() {
   resultDiv.style.display = "block";
   resultDiv.innerHTML = "Running prediction...";
 
-  const response = await fetch(
-    "https://huggingface.co/spaces/heezuss/news-classification-model/api/predict_category",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        data: [text, modelChoice]
-      })
-    }
-  );
+  const result = await client.predict("/predict_category", {
+    text: text,
+    model_choice: modelChoice
+  });
 
-  const json = await response.json();
-  const [probs, confidence, entropy] = json.data;
+  const [probs, confidence, entropy] = result.data;
 
   let html = `<strong>Confidence:</strong> ${confidence.toFixed(3)}<br>`;
   html += `<strong>Entropy:</strong> ${entropy.toFixed(3)}<br><br>`;
@@ -28,4 +26,5 @@ async function runPrediction() {
   }
 
   resultDiv.innerHTML = html;
-}
+};
+</script>

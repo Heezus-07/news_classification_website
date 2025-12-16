@@ -59,7 +59,11 @@ h1 {
   flex-direction: column;
 }
 
-textarea {
+/* ==================================================
+   Inputs (EXPLICIT CLASSES – IMPORTANT)
+================================================== */
+
+.input-text {
   width: 100%;
   padding: 18px;
   border-radius: 18px;
@@ -71,15 +75,8 @@ textarea {
   box-shadow:
     inset 6px 6px 12px #b8bec6,
     inset -6px -6px 12px #ffffff;
-}
-
-textarea:focus {
   outline: none;
 }
-
-/* ==================================================
-   Controls
-================================================== */
 
 .controls {
   display: flex;
@@ -87,8 +84,8 @@ textarea:focus {
   margin-top: 20px;
 }
 
-select,
-button {
+.input-select,
+.input-button {
   font-family: inherit;
   font-size: 16px;
   padding: 14px 20px;
@@ -102,7 +99,7 @@ button {
   transition: all 0.2s ease;
 }
 
-select {
+.input-select {
   min-width: 160px;
   appearance: none;
   background-image:
@@ -116,13 +113,13 @@ select {
   padding-right: 36px;
 }
 
-button:hover {
+.input-button:hover {
   box-shadow:
     inset 6px 6px 12px #b8bec6,
     inset -6px -6px 12px #ffffff;
 }
 
-button:active {
+.input-button:active {
   transform: scale(0.97);
 }
 

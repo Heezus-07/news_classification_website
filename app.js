@@ -82,3 +82,12 @@ window.runPrediction = async function () {
       "Prediction failed. Please try again or check the console.";
   }
 };
+
+/*
+  Load example text into the input box
+*/
+window.loadExample = function (element) {
+  const textInput = document.getElementById("text");
+  textInput.value = element.textContent.trim();
+  textInput.focus();
+};

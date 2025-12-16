@@ -57,6 +57,12 @@ h1 {
 .left-panel {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ==================================================
@@ -81,7 +87,7 @@ h1 {
 .controls {
   display: flex;
   gap: 15px;
-  margin-top: 20px;
+  align-items: center;
 }
 
 .input-select,
@@ -117,6 +123,10 @@ h1 {
   box-shadow:
     inset 6px 6px 12px #b8bec6,
     inset -6px -6px 12px #ffffff;
+}
+
+.input-text {
+  min-height: 110px;
 }
 
 .input-button:active {
@@ -271,6 +281,7 @@ h1 {
 
 @media (max-width: 900px) {
   .layout {
-    grid-template-columns: 1fr;
-  }
+     align-items: flex-start;
+   }
 }
+

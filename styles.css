@@ -1,6 +1,3 @@
-/* ==================================================
-   Global & Neumorphic Reset
-================================================== */
 :root {
   --primary-gradient: linear-gradient(135deg, #6c63ff, #5a54e8);
   --bg-color: #e0e5ec;
@@ -14,12 +11,11 @@ body {
   margin: 0;
   padding-top: 100px;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
-  background: var(--bg-color); /* Matches Card Background */
+  background: var(--bg-color);
   color: #2e2e2e;
   transition: all 0.5s ease;
 }
 
-/* Glass Navigation */
 .glass-nav {
   position: fixed;
   top: 0; width: 100%; height: 75px;
@@ -40,17 +36,28 @@ body {
 .logo { font-size: 24px; font-weight: 800; }
 .logo span { color: #6c63ff; }
 
-.share-btn {
-  padding: 10px 20px; border-radius: 12px; border: none;
-  background: var(--bg-color); font-weight: 600; cursor: pointer;
-  box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+.share-btn, .input-button {
+  padding: 15px 25px; 
+  border-radius: 15px; 
+  border: none;
+  background: var(--bg-color); 
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600; 
+  cursor: pointer;
+  box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+  transition: all 0.2s ease;
 }
 
-/* Main Container & Card */
+.input-button:active, .share-btn:active { 
+  transform: scale(0.95); 
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); 
+}
+
 .container { max-width: 1600px; margin: 0 auto; padding: 0 40px; }
 
 .main-ui-card {
-  background: var(--bg-color); /* Matches Body Background */
+  background: var(--bg-color);
   border-radius: 30px;
   padding: 50px;
   box-shadow: 20px 20px 60px var(--shadow-dark), -20px -20px 60px var(--shadow-light);
@@ -60,10 +67,11 @@ h1 { text-align: center; margin-bottom: 40px; font-size: 32px; font-weight: 700;
 
 .layout { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 50px; }
 
-/* Neumorphic Inputs */
 .input-text {
   width: 100%; min-height: 120px; padding: 20px;
-  border-radius: 20px; border: none; font-size: 18px;
+  border-radius: 20px; border: none; 
+  font-family: inherit;
+  font-size: 18px;
   background: var(--bg-color);
   box-shadow: inset 8px 8px 16px var(--shadow-dark), inset -8px -8px 16px var(--shadow-light);
   outline: none; margin-bottom: 25px;
@@ -71,38 +79,29 @@ h1 { text-align: center; margin-bottom: 40px; font-size: 32px; font-weight: 700;
 
 .controls { display: flex; gap: 20px; margin-bottom: 30px; }
 
-/* Neumorphic Select Box */
 .input-select {
   padding: 15px 25px; 
   border-radius: 15px; 
   border: none;
   background: var(--bg-color); 
-  
-  /* Font Sync */
   font-family: inherit; 
   font-size: 18px;
   font-weight: 600;
   color: #2e2e2e;
-  
-  /* Neumorphic shadow (Outset by default) */
   box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
   cursor: pointer; 
   transition: all 0.2s ease;
   outline: none;
   appearance: none;
-  
   background-image: linear-gradient(45deg, transparent 50%, #666 50%), 
                     linear-gradient(135deg, #666 50%, transparent 50%);
-  background-position: calc(100% - 20px) calc(1em + 2px), 
-                       calc(100% - 15px) calc(1em + 2px);
+  background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%;
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
 }
 
-/* Neumorphic "Pressed" effect when clicking/focusing */
 .input-select:focus, .input-select:active {
-  box-shadow: inset 4px 4px 8px var(--shadow-dark), 
-              inset -4px -4px 8px var(--shadow-light);
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
 }
 
 .input-select option {
@@ -112,9 +111,6 @@ h1 { text-align: center; margin-bottom: 40px; font-size: 32px; font-weight: 700;
   color: #2e2e2e;
 }
 
-.input-button:active { transform: scale(0.95); box-shadow: inset 4px 4px 8px var(--shadow-dark); }
-
-/* Result Card & Winner Display */
 .result-card {
   padding: 35px; border-radius: 25px; margin-top: 20px;
   background: var(--bg-color);
@@ -127,51 +123,45 @@ h1 { text-align: center; margin-bottom: 40px; font-size: 32px; font-weight: 700;
 }
 
 .metrics { display: flex; gap: 20px; margin-bottom: 30px; }
+
 .metric {
   flex: 1; padding: 20px; text-align: center; border-radius: 20px;
   background: var(--bg-color);
   box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
 }
+
 .metric-label { display: block; font-size: 22px; font-weight: 700; color: #666; margin-bottom: 5px; }
 .metric-value { font-size: 18px; font-weight: 600; }
 
-/* Probability Rows */
 .prob-row { display: flex; align-items: center; gap: 20px; margin-bottom: 15px; opacity: 0; animation: fadeIn 0.5s forwards; }
 .prob-label { width: 130px; font-size: 20px; font-weight: 700; }
+
 .prob-bar {
   flex: 1; height: 18px; border-radius: 10px; background: var(--bg-color);
   box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
   overflow: hidden;
 }
+
 .prob-fill { height: 100%; width: 0; background: var(--primary-gradient); transition: width 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
 .prob-value { width: 80px; text-align: right; font-size: 18px; font-weight: 600; }
 
-/* Right Panel Examples */
 .examples-card {
   padding: 30px; border-radius: 25px; height: 100%;
   background: var(--bg-color);
   box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
 }
+
 .examples-list { list-style: none; padding: 0; }
+
 .examples-list li {
-  padding: 15px; 
-  margin-bottom: 15px; 
-  border-radius: 15px; 
-  cursor: pointer;
-  font-family: inherit; 
-  font-size: 18px; 
-  line-height: 1.5;
+  padding: 15px; margin-bottom: 15px; border-radius: 15px; cursor: pointer;
+  font-family: inherit; font-size: 18px; line-height: 1.5;
   box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
   transition: 0.3s;
 }
 
-.examples-list li:hover { 
-  transform: translateX(10px); 
-  color: #6c63ff; 
-  box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light);
-}
+.examples-list li:hover { transform: translateX(10px); color: #6c63ff; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); }
 
-/* Themes */
 .theme-tech { --primary-gradient: linear-gradient(135deg, #00d2ff, #3a7bd5); }
 .theme-business { --primary-gradient: linear-gradient(135deg, #00ff87, #2f80ed); }
 .theme-world { --primary-gradient: linear-gradient(135deg, #f2994a, #f2c94c); }

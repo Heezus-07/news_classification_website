@@ -78,6 +78,25 @@ body {
 /* Metrics & Values */
 .metric-value { font-size: 24px; font-weight: 800; color: #333; }
 
+/* Styling for the Large Category Name */
+.winner-display {
+  text-align: center;
+  font-size: 42px; /* Large size like your screenshot */
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  text-transform: capitalize;
+  letter-spacing: -1px;
+  /* Optional: adds a slight fade-in animation */
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Ensure the layout handles the new element well */
+.probs {
+  border-top: 2px solid rgba(0,0,0,0.05);
+  padding-top: 20px;
+}
+
 .prob-label { font-size: 18px; font-weight: 600; width: 120px; }
 
 .prob-bar {
@@ -99,3 +118,4 @@ body {
 .prob-value { font-size: 18px; font-weight: 800; width: 90px; text-align: right; }
 
 .hidden { display: none; }
+

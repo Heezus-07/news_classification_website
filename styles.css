@@ -14,7 +14,7 @@ body {
   margin: 0;
   padding-top: 100px;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
-  background: var(--bg-color);
+  background: var(--bg-color); /* Matches Card Background */
   color: #2e2e2e;
   transition: all 0.5s ease;
 }
@@ -40,11 +40,17 @@ body {
 .logo { font-size: 24px; font-weight: 800; }
 .logo span { color: #6c63ff; }
 
+.share-btn {
+  padding: 10px 20px; border-radius: 12px; border: none;
+  background: var(--bg-color); font-weight: 600; cursor: pointer;
+  box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+}
+
 /* Main Container & Card */
 .container { max-width: 1600px; margin: 0 auto; padding: 0 40px; }
 
 .main-ui-card {
-  background: var(--bg-color);
+  background: var(--bg-color); /* Matches Body Background */
   border-radius: 30px;
   padding: 50px;
   box-shadow: 20px 20px 60px var(--shadow-dark), -20px -20px 60px var(--shadow-light);
@@ -76,7 +82,8 @@ h1 { text-align: center; margin-bottom: 40px; font-size: 32px; font-weight: 700;
 
 /* Result Card & Winner Display */
 .result-card {
-  padding: 35px; border-radius: 25px;
+  padding: 35px; border-radius: 25px; margin-top: 20px;
+  background: var(--bg-color);
   box-shadow: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
 }
 
@@ -88,6 +95,7 @@ h1 { text-align: center; margin-bottom: 40px; font-size: 32px; font-weight: 700;
 .metrics { display: flex; gap: 20px; margin-bottom: 30px; }
 .metric {
   flex: 1; padding: 20px; text-align: center; border-radius: 20px;
+  background: var(--bg-color);
   box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
 }
 .metric-label { display: block; font-size: 14px; font-weight: 600; color: #666; margin-bottom: 5px; }
@@ -107,6 +115,7 @@ h1 { text-align: center; margin-bottom: 40px; font-size: 32px; font-weight: 700;
 /* Right Panel Examples */
 .examples-card {
   padding: 30px; border-radius: 25px; height: 100%;
+  background: var(--bg-color);
   box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
 }
 .examples-list { list-style: none; padding: 0; }

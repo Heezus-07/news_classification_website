@@ -2,28 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>News Classification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Intelligence Dashboard</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <div class="container">
-    <div class="card">
+  <nav class="glass-nav">
+    <div class="nav-content">
+      <span class="logo">AI<span>News</span></span>
+      <div class="nav-links">
+        <span>Analysis</span>
+        <span>History</span>
+        <button class="share-btn">Share Result</button>
+      </div>
+    </div>
+  </nav>
 
+  <div class="container">
+    <div class="card main-ui-card">
       <h1>News Article Classification</h1>
 
       <div class="layout">
-
-        <!-- LEFT PANEL -->
         <div class="left-panel">
-
-          <!-- Text input -->
-          <textarea
-            id="text"
-            class="input-text"
-            rows="4"
-            placeholder="Enter a news headline or short description..."
-          ></textarea>
+          <textarea id="text" class="input-text" rows="4" placeholder="Paste a news headline here..."></textarea>
           
           <div class="controls">
             <select id="model" class="input-select">
@@ -33,53 +35,38 @@
               <option>DistilBERT (Full)</option>
               <option>DistilBERT (LoRA)</option>
             </select>
-          
-            <button class="input-button" onclick="runPrediction()">Classify</button>
+            <button class="input-button" onclick="runPrediction()">Classify News</button>
           </div>
 
-          <!-- Results -->
           <div id="result" class="result-card hidden">
-
             <div class="metrics">
-              <div class="metric">
+              <div class="metric" id="conf-box">
                 <span class="metric-label">Confidence</span>
-                <span id="confidence-value" class="metric-value"></span>
+                <span id="confidence-value" class="metric-value">0.000</span>
               </div>
               <div class="metric">
                 <span class="metric-label">Entropy</span>
-                <span id="entropy-value" class="metric-value"></span>
+                <span id="entropy-value" class="metric-value">0.000</span>
               </div>
             </div>
 
-            <div id="probabilities" class="probs"></div>
-
+            <div id="probabilities" class="probs">
+              </div>
           </div>
         </div>
 
-        <!-- RIGHT PANEL -->
         <div class="right-panel">
           <div class="examples-card">
-            <h3>Example News Headlines</h3>
+            <h3>Trending Topics</h3>
             <ul class="examples-list">
-              <li onclick="loadExample(this)">
-                Google unveils new AI chip for cloud customers.
-              </li>
-              <li onclick="loadExample(this)">
-                European Union holds emergency meeting on rising tensions.
-              </li>
-              <li onclick="loadExample(this)">
-                Scientists discover new exoplanet in nearby solar system.
-              </li>
-              <li onclick="loadExample(this)">
-                NFL signs multi-billion dollar broadcast deal with major streaming platform.
-              </li>
-              <li onclick="loadExample(this)">
-                Government to nationalize struggling telecom company after years of financial losses.
-              </li>
+              <li onclick="loadExample(this)">Google unveils new AI chip for cloud customers.</li>
+              <li onclick="loadExample(this)">European Union holds emergency meeting on rising tensions.</li>
+              <li onclick="loadExample(this)">Scientists discover new exoplanet in nearby solar system.</li>
+              <li onclick="loadExample(this)">NFL signs multi-billion dollar broadcast deal with major streaming platform.</li>
+              <li onclick="loadExample(this)">Government to nationalize struggling telecom company.</li>
             </ul>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -87,4 +74,3 @@
   <script type="module" src="./app.js"></script>
 </body>
 </html>
-

@@ -17,7 +17,7 @@ body {
 .container {
   max-width: 1000px;
   margin: 60px auto;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 /* ==================================================
@@ -284,4 +284,5 @@ h1 {
      align-items: flex-start;
    }
 }
+
 

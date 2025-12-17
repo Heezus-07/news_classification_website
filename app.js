@@ -1,12 +1,10 @@
 import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
-/*
-  Connect to Hugging Face Space using Gradio client
+/* Connect to Hugging Face Space using Gradio client 
 */
 const client = await Client.connect("heezuss/news-classification-model");
 
-/*
-  Run prediction
+/* Run prediction 
 */
 window.runPrediction = async function () {
   const text = document.getElementById("text").value;
@@ -19,12 +17,15 @@ window.runPrediction = async function () {
 
   if (!text || text.trim().length === 0) {
     resultCard.classList.remove("hidden");
-    probsContainer.innerHTML = "Please enter some text.";
+    probsContainer.innerHTML = `<div style="text-align:center; padding: 20px; font-weight:600;">Please enter some text.</div>`;
     return;
   }
 
+  // Visual feedback during processing
   resultCard.classList.remove("hidden");
-  probsContainer.innerHTML = "Running prediction...";
+  probsContainer.innerHTML = `<div style="text-align:center; padding: 20px; font-weight:600; color: #6c63ff;">Analyzing article...</div>`;
+  confidenceValue.textContent = "---";
+  entropyValue.textContent = "---";
 
   try {
     const result = await client.predict("/predict_category", {
@@ -34,24 +35,29 @@ window.runPrediction = async function () {
 
     const [prediction, confidence, entropy] = result.data;
 
+    // Update the metric boxes
     confidenceValue.textContent = confidence.toFixed(3);
     entropyValue.textContent = entropy.toFixed(3);
 
     probsContainer.innerHTML = "";
 
+    // Generate the probability rows
     prediction.confidences.forEach(item => {
       const row = document.createElement("div");
       row.className = "prob-row";
 
+      // item.confidence is usually a decimal (e.g., 0.9785)
+      const percent = (item.confidence * 100).toFixed(2);
+
       row.innerHTML = `
         <div class="prob-label">${item.label}</div>
         <div class="prob-bar">
-          <div class="prob-fill"
-               style="width:${(item.confidence * 100).toFixed(1)}%">
+          <div class="prob-fill" 
+               style="width: ${percent}%">
           </div>
         </div>
         <div class="prob-value">
-          ${(item.confidence * 100).toFixed(2)}%
+          ${percent}%
         </div>
       `;
 
@@ -60,12 +66,11 @@ window.runPrediction = async function () {
 
   } catch (err) {
     console.error(err);
-    probsContainer.innerHTML = "Prediction failed. Please try again.";
+    probsContainer.innerHTML = `<div style="text-align:center; color: #d9534f; font-weight:600;">Prediction failed. Please try again.</div>`;
   }
 };
 
-/*
-  Load example text
+/* Load example text 
 */
 window.loadExample = function (element) {
   const textInput = document.getElementById("text");

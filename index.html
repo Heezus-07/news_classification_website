@@ -7,12 +7,10 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
   <nav class="glass-nav">
     <div class="nav-content">
       <span class="logo">AI<span>News</span></span>
       <div class="nav-links">
-        <span>Analysis History</span>
         <button class="share-btn">Share Result</button>
       </div>
     </div>
@@ -21,11 +19,9 @@
   <div class="container">
     <div class="main-ui-card">
       <h1>News Article Classification</h1>
-
       <div class="layout">
         <div class="left-panel">
           <textarea id="text" class="input-text" placeholder="Paste a news headline here..."></textarea>
-          
           <div class="controls">
             <select id="model" class="input-select">
               <option>Ensemble</option>
@@ -48,9 +44,7 @@
                 <span id="entropy-value" class="metric-value">0.000</span>
               </div>
             </div>
-
             <div id="winning-class" class="winner-display"></div>
-            
             <div id="probabilities" class="probs"></div>
           </div>
         </div>
@@ -70,7 +64,6 @@
       </div>
     </div>
   </div>
-
   <script type="module" src="./app.js"></script>
 </body>
 </html>

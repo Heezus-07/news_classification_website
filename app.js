@@ -2,7 +2,7 @@ import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.m
 
 const client = await Client.connect("heezuss/news-classification-model");
 
-// Helper function for the "Counting Up" animation
+// Helper function for the "Counting Up" animation for numbers
 function animateValue(obj, start, end, duration) {
     let startTimestamp = null;
     const step = (timestamp) => {
@@ -21,10 +21,13 @@ window.runPrediction = async function () {
     const modelChoice = document.getElementById("model").value;
     const resultCard = document.getElementById("result");
     const probsContainer = document.getElementById("probabilities");
+    const winningDisplay = document.getElementById("winning-class"); // The new display element
 
     if (!text) return;
 
+    // Reset UI for new prediction
     resultCard.classList.remove("hidden");
+    winningDisplay.textContent = ""; 
     probsContainer.innerHTML = `<div class="loading-pulse">Analyzing deep features...</div>`;
 
     try {
@@ -35,24 +38,38 @@ window.runPrediction = async function () {
 
         const [prediction, confidence, entropy] = result.data;
 
-        // 1. Animate the Metric Numbers
+        // 1. DISPLAY THE WINNING CLASS (Large text above bars)
+        const winningLabel = prediction.label;
+        winningDisplay.textContent = winningLabel;
+
+        // 2. Animate the Metric Numbers
         animateValue(document.getElementById("confidence-value"), 0, confidence, 1000);
         animateValue(document.getElementById("entropy-value"), 0, entropy, 1000);
 
-        // 2. Dynamic Theme Change based on top category
-        const topCat = prediction.label.toLowerCase();
-        document.body.className = ""; // Reset
-        if (topCat.includes("sci")) document.body.classList.add("theme-tech");
-        else if (topCat.includes("bus")) document.body.classList.add("theme-business");
-        else if (topCat.includes("wor")) document.body.classList.add("theme-world");
-        else if (topCat.includes("spo")) document.body.classList.add("theme-sports");
+        // 3. Dynamic Theme & Color Change based on winning category
+        const topCat = winningLabel.toLowerCase();
+        document.body.className = ""; // Reset body classes
+        
+        if (topCat.includes("sci")) {
+            document.body.classList.add("theme-tech");
+            winningDisplay.style.color = "#00d2ff";
+        } else if (topCat.includes("bus")) {
+            document.body.classList.add("theme-business");
+            winningDisplay.style.color = "#00ff87";
+        } else if (topCat.includes("wor")) {
+            document.body.classList.add("theme-world");
+            winningDisplay.style.color = "#ffcc33";
+        } else if (topCat.includes("spo")) {
+            document.body.classList.add("theme-sports");
+            winningDisplay.style.color = "#ff4b2b";
+        }
 
-        // 3. Inject Rows with Staggered Animation
+        // 4. Inject Probability Rows with Staggered Animation
         probsContainer.innerHTML = "";
         prediction.confidences.forEach((item, index) => {
             const row = document.createElement("div");
             row.className = "prob-row";
-            row.style.animationDelay = `${index * 0.1}s`; // Stagger effect
+            row.style.animationDelay = `${index * 0.1}s`; 
 
             const percent = (item.confidence * 100).toFixed(2);
             row.innerHTML = `
@@ -62,13 +79,15 @@ window.runPrediction = async function () {
             `;
             probsContainer.appendChild(row);
 
-            // Trigger the bar slide-in after a tiny delay
+            // Trigger the bar growth animation
             setTimeout(() => {
-                document.getElementById(`bar-${index}`).style.width = `${percent}%`;
+                const bar = document.getElementById(`bar-${index}`);
+                if (bar) bar.style.width = `${percent}%`;
             }, 100);
         });
 
     } catch (err) {
+        console.error(err);
         probsContainer.innerHTML = "Error connecting to AI engine.";
     }
 };

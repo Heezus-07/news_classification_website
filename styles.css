@@ -111,8 +111,8 @@ h1 {
 .metric-label {
   display: block;
   font-size: 20px;
-  font-weight: 600;
-  color: #666;
+  font-weight: 700;
+  color: #333;
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -122,7 +122,7 @@ h1 {
   /* Smaller than the 28px Title as requested */
   font-size: 18px; 
   font-weight: 700;
-  color: #333;
+  color: #666;
 }
 
 /* ==================================================
@@ -144,7 +144,7 @@ h1 {
   width: 120px;
   /* Increased Font Size for Classifications */
   font-size: 18px; 
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .prob-bar {
@@ -167,7 +167,7 @@ h1 {
   text-align: right;
   /* Increased Font Size for Percentages */
   font-size: 18px; 
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* ==================================================
@@ -197,3 +197,4 @@ h1 {
   transform: translateX(5px);
   box-shadow: 4px 4px 8px #b8bec6, -4px -4px 8px #ffffff;
 }
+

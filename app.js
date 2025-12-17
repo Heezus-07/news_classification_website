@@ -1,79 +1,78 @@
 import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
 
-/* Connect to Hugging Face Space using Gradio client 
-*/
 const client = await Client.connect("heezuss/news-classification-model");
 
-/* Run prediction 
-*/
+// Helper function for the "Counting Up" animation
+function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = (progress * (end - start) + start).toFixed(3);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
 window.runPrediction = async function () {
-  const text = document.getElementById("text").value;
-  const modelChoice = document.getElementById("model").value;
+    const text = document.getElementById("text").value;
+    const modelChoice = document.getElementById("model").value;
+    const resultCard = document.getElementById("result");
+    const probsContainer = document.getElementById("probabilities");
 
-  const resultCard = document.getElementById("result");
-  const confidenceValue = document.getElementById("confidence-value");
-  const entropyValue = document.getElementById("entropy-value");
-  const probsContainer = document.getElementById("probabilities");
+    if (!text) return;
 
-  if (!text || text.trim().length === 0) {
     resultCard.classList.remove("hidden");
-    probsContainer.innerHTML = `<div style="text-align:center; padding: 20px; font-weight:600;">Please enter some text.</div>`;
-    return;
-  }
+    probsContainer.innerHTML = `<div class="loading-pulse">Analyzing deep features...</div>`;
 
-  // Visual feedback during processing
-  resultCard.classList.remove("hidden");
-  probsContainer.innerHTML = `<div style="text-align:center; padding: 20px; font-weight:600; color: #6c63ff;">Analyzing article...</div>`;
-  confidenceValue.textContent = "---";
-  entropyValue.textContent = "---";
+    try {
+        const result = await client.predict("/predict_category", {
+            text: text,
+            model_choice: modelChoice
+        });
 
-  try {
-    const result = await client.predict("/predict_category", {
-      text: text,
-      model_choice: modelChoice
-    });
+        const [prediction, confidence, entropy] = result.data;
 
-    const [prediction, confidence, entropy] = result.data;
+        // 1. Animate the Metric Numbers
+        animateValue(document.getElementById("confidence-value"), 0, confidence, 1000);
+        animateValue(document.getElementById("entropy-value"), 0, entropy, 1000);
 
-    // Update the metric boxes
-    confidenceValue.textContent = confidence.toFixed(3);
-    entropyValue.textContent = entropy.toFixed(3);
+        // 2. Dynamic Theme Change based on top category
+        const topCat = prediction.label.toLowerCase();
+        document.body.className = ""; // Reset
+        if (topCat.includes("sci")) document.body.classList.add("theme-tech");
+        else if (topCat.includes("bus")) document.body.classList.add("theme-business");
+        else if (topCat.includes("wor")) document.body.classList.add("theme-world");
+        else if (topCat.includes("spo")) document.body.classList.add("theme-sports");
 
-    probsContainer.innerHTML = "";
+        // 3. Inject Rows with Staggered Animation
+        probsContainer.innerHTML = "";
+        prediction.confidences.forEach((item, index) => {
+            const row = document.createElement("div");
+            row.className = "prob-row";
+            row.style.animationDelay = `${index * 0.1}s`; // Stagger effect
 
-    // Generate the probability rows
-    prediction.confidences.forEach(item => {
-      const row = document.createElement("div");
-      row.className = "prob-row";
+            const percent = (item.confidence * 100).toFixed(2);
+            row.innerHTML = `
+                <div class="prob-label">${item.label}</div>
+                <div class="prob-bar"><div class="prob-fill" id="bar-${index}"></div></div>
+                <div class="prob-value">${percent}%</div>
+            `;
+            probsContainer.appendChild(row);
 
-      // item.confidence is usually a decimal (e.g., 0.9785)
-      const percent = (item.confidence * 100).toFixed(2);
+            // Trigger the bar slide-in after a tiny delay
+            setTimeout(() => {
+                document.getElementById(`bar-${index}`).style.width = `${percent}%`;
+            }, 100);
+        });
 
-      row.innerHTML = `
-        <div class="prob-label">${item.label}</div>
-        <div class="prob-bar">
-          <div class="prob-fill" 
-               style="width: ${percent}%">
-          </div>
-        </div>
-        <div class="prob-value">
-          ${percent}%
-        </div>
-      `;
-
-      probsContainer.appendChild(row);
-    });
-
-  } catch (err) {
-    console.error(err);
-    probsContainer.innerHTML = `<div style="text-align:center; color: #d9534f; font-weight:600;">Prediction failed. Please try again.</div>`;
-  }
+    } catch (err) {
+        probsContainer.innerHTML = "Error connecting to AI engine.";
+    }
 };
 
-/* Load example text 
-*/
 window.loadExample = function (element) {
-  const textInput = document.getElementById("text");
-  textInput.value = element.textContent.trim();
-  textInput.focus();
+    document.getElementById("text").value = element.textContent.trim();
 };

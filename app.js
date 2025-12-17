@@ -34,7 +34,6 @@ window.runPrediction = async function () {
 
         const [prediction, confidence, entropy] = result.data;
 
-        // 1. Set Winning Class and Theme
         const winningLabel = prediction.label;
         winningDisplay.textContent = winningLabel;
         
@@ -45,11 +44,9 @@ window.runPrediction = async function () {
         else if (topCat.includes("wor")) { document.body.classList.add("theme-world"); winningDisplay.style.color = "#f2994a"; }
         else if (topCat.includes("spo")) { document.body.classList.add("theme-sports"); winningDisplay.style.color = "#eb5757"; }
 
-        // 2. Animate Numbers
         animateValue(document.getElementById("confidence-value"), 0, confidence, 1000);
         animateValue(document.getElementById("entropy-value"), 0, entropy, 1000);
 
-        // 3. Build Bars
         probsContainer.innerHTML = "";
         prediction.confidences.forEach((item, index) => {
             const row = document.createElement("div");

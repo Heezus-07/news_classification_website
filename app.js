@@ -18,12 +18,12 @@ window.runPrediction = async function () {
     const modelChoice = document.getElementById("model").value;
     const resultCard = document.getElementById("result");
     const probsContainer = document.getElementById("probabilities");
-    const winningDisplay = document.getElementById("winning-class");
+    const winningDisplay = document.getElementById("winning-class"); // Required for the new feature
 
     if (!text || text.trim().length === 0) return;
 
     resultCard.classList.remove("hidden");
-    winningDisplay.textContent = "...";
+    winningDisplay.textContent = "..."; 
     probsContainer.innerHTML = `<div style="text-align:center; padding:20px; font-weight:600;">Analyzing Headlines...</div>`;
 
     try {
@@ -34,6 +34,7 @@ window.runPrediction = async function () {
 
         const [prediction, confidence, entropy] = result.data;
 
+        // UPDATE: This part fills the large title we added to the HTML
         const winningLabel = prediction.label;
         winningDisplay.textContent = winningLabel;
         

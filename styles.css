@@ -32,7 +32,7 @@ body {
 h1 {
   text-align: center;
   margin: 0 0 40px 0;
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 700;
   color: #1a1a1a;
 }
@@ -75,7 +75,7 @@ h1 {
   border-radius: 18px;
   border: none;
   background: #e0e5ec;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   box-shadow: 6px 6px 12px #b8bec6, -6px -6px 12px #ffffff;
 }
@@ -110,7 +110,7 @@ h1 {
 
 .metric-label {
   display: block;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   color: #666;
   margin-bottom: 8px;
@@ -120,7 +120,7 @@ h1 {
 
 .metric-value {
   /* Smaller than the 28px Title as requested */
-  font-size: 22px; 
+  font-size: 18px; 
   font-weight: 700;
   color: #333;
 }
@@ -150,7 +150,7 @@ h1 {
 .prob-bar {
   flex: 1;
   height: 18px; /* Slightly thicker bar for visual balance */
-  border-radius: 12px;
+  border-radius: 18px;
   background: #e0e5ec;
   box-shadow: inset 4px 4px 8px #b8bec6, inset -4px -4px 8px #ffffff;
   overflow: hidden;
@@ -188,7 +188,7 @@ h1 {
   cursor: pointer;
   background: #e0e5ec;
   box-shadow: inset 4px 4px 8px #b8bec6, inset -4px -4px 8px #ffffff;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.4;
   transition: 0.2s;
 }
